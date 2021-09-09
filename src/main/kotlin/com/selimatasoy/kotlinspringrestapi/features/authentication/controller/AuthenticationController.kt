@@ -1,32 +1,28 @@
 package com.selimatasoy.kotlinspringrestapi.features.authentication.controller
 
-import com.selimatasoy.kotlinspringrestapi.features.authentication.data.AuthenticationData
 import com.selimatasoy.kotlinspringrestapi.features.authentication.model.LoginRequestDto
 import com.selimatasoy.kotlinspringrestapi.features.authentication.model.LoginResponseDto
 import com.selimatasoy.kotlinspringrestapi.features.authentication.model.UserInfoDto
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
-import org.springframework.stereotype.Component
+import com.selimatasoy.kotlinspringrestapi.features.authentication.service.AuthenticationService
 import org.springframework.web.bind.annotation.*
 
 @RestController
-class AuthenticationController constructor(private val authenticationData: AuthenticationData) {
+class AuthenticationController constructor(private val authenticationService: AuthenticationService) {
 
     @PostMapping("/createUser/")
-    fun createUser(@RequestBody body:UserInfoDto) {
-        authenticationData.createUser(body)
+    fun createUser(@RequestBody body: UserInfoDto) {
+        authenticationService.createUser(body)
         return
     }
 
     @PostMapping("/login/")
-    fun login(@RequestBody body:LoginRequestDto): LoginResponseDto {
-        return authenticationData.login(body)
+    fun login(@RequestBody body: LoginRequestDto): LoginResponseDto {
+        return authenticationService.login(body)
     }
 
     @GetMapping("/userInfo/")
     fun getUserInfo(@RequestParam email:String):UserInfoDto {
-        return authenticationData.getUserInfo(email)
+        return authenticationService.getUserInfo(email)
     }
 
 }

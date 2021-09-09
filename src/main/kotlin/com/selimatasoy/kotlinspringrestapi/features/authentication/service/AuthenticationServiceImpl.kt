@@ -1,4 +1,4 @@
-package com.selimatasoy.kotlinspringrestapi.features.authentication.data
+package com.selimatasoy.kotlinspringrestapi.features.authentication.service
 
 import com.selimatasoy.kotlinspringrestapi.features.authentication.dao.AuthenticationDao
 import com.selimatasoy.kotlinspringrestapi.features.authentication.model.LoginRequestDto
@@ -6,12 +6,14 @@ import com.selimatasoy.kotlinspringrestapi.features.authentication.model.LoginRe
 import com.selimatasoy.kotlinspringrestapi.features.authentication.model.UserInfoDto
 import com.selimatasoy.kotlinspringrestapi.jwt.JwtManager
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Component
 import org.springframework.stereotype.Service
 
 @Service
-class AuthenticationDataImpl @Autowired constructor(private val authenticationDao: AuthenticationDao, private val jwtManager: JwtManager) :
-    AuthenticationData {
+class AuthenticationServiceImpl @Autowired constructor(
+    private val authenticationDao: AuthenticationDao,
+    private val jwtManager: JwtManager
+) :
+    AuthenticationService {
     override fun login(request: LoginRequestDto): LoginResponseDto {
         if (authenticationDao.login(request)) {
             return LoginResponseDto("will return a jwt token soon")//TODO

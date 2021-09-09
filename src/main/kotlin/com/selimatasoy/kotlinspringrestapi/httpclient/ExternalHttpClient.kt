@@ -1,8 +1,7 @@
 package com.selimatasoy.kotlinspringrestapi.httpclient
 
 import io.ktor.client.*
-import org.springframework.stereotype.Component
 
-interface HttpService {
+interface ExternalHttpClient {
     fun getClient(): HttpClient
 }

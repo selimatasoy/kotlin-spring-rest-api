@@ -10,7 +10,7 @@ import io.ktor.http.*
 import org.springframework.stereotype.Component
 
 @Component
-class HttpServiceImpl : HttpService {
+class ExternalHttpClientImpl : ExternalHttpClient {
 
     private val client: HttpClient = HttpClient(OkHttp) {
         engine {
