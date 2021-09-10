@@ -13,7 +13,7 @@ A Modern Kotlin-Spring RESTful API example. Connects to a PostgreSQL database an
 # Architecture
 ![github (7)](https://user-images.githubusercontent.com/86873858/132682784-aa98f8e3-5604-4563-a8e6-d8126a1d1aa3.png)
 
-# Database Creditentials
+# Database Credentials
 resources/application.conf
 ```
 spring.datasource.driverClassName=org.postgresql.Driver
