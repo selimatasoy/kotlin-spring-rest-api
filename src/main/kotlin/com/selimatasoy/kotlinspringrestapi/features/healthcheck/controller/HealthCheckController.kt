@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
-class HealthCheckController(private val healthCheckService: HealthCheckService) {
+class HealthCheckController(val healthCheckService: HealthCheckService) {
 
-    @GetMapping("/healthCheck/")
+    @GetMapping("/api/v1/healthCheck")
     fun getHealthCheck(): String? {
         return healthCheckService.getHealthCheckStatus()
     }

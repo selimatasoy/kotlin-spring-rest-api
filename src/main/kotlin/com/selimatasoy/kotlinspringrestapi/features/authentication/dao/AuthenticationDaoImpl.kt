@@ -3,26 +3,31 @@ package com.selimatasoy.kotlinspringrestapi.features.authentication.dao
 import com.selimatasoy.kotlinspringrestapi.extensions.connectToExampleDatabase
 import com.selimatasoy.kotlinspringrestapi.features.authentication.dao.entity.User
 import com.selimatasoy.kotlinspringrestapi.features.authentication.dao.mapper.fromUserDaoToUserInfo
-import com.selimatasoy.kotlinspringrestapi.features.authentication.model.LoginRequestDto
 import com.selimatasoy.kotlinspringrestapi.features.authentication.model.UserInfoDto
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Repository
 
 @Repository
 class AuthenticationDaoImpl() : AuthenticationDao {
 
-    override fun login(request: LoginRequestDto): Boolean {
+    @Autowired
+    private lateinit var bCryptPasswordEncoder: BCryptPasswordEncoder
+
+    override fun login(username: String): UserDetails {
         Database.connectToExampleDatabase()
 
-        val count:Long = transaction {
+        val userInfo = transaction {
             addLogger(StdOutSqlLogger)
-            return@transaction User.select { User.email eq request.username }.count()
+            return@transaction User.select { User.email eq username }.single().fromUserDaoToUserInfo()
         }
-        return count.toInt() == 1
+        return org.springframework.security.core.userdetails.User(userInfo.email, userInfo.password, ArrayList())
     }
 
-    override fun getUserInfo(email:String): UserInfoDto {
+    override fun getUserInfo(email: String): UserInfoDto {
         Database.connectToExampleDatabase()
 
         val userInfo = transaction {
@@ -42,7 +47,7 @@ class AuthenticationDaoImpl() : AuthenticationDao {
                 it[name] = userInfoDto.name
                 it[surname] = userInfoDto.surname
                 it[email] = userInfoDto.email
-                it[password] = userInfoDto.password
+                it[password] = bCryptPasswordEncoder.encode(userInfoDto.password)
             }
         }
     }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class StarWarsController(private val starWarsService: StarWarsService) {
 
-    @GetMapping("/movie/")
+    @GetMapping("/api/v1/movie")
     suspend fun getMovie(): Movie? {
         return starWarsService.getMovie()
     }

@@ -8,5 +8,5 @@ fun ResultRow.fromUserDaoToUserInfo() = UserInfoDto(
     email = this[User.email],
     name = this[User.name],
     surname = this[User.surname],
-    password = ""
+    password = this[User.password]
 )

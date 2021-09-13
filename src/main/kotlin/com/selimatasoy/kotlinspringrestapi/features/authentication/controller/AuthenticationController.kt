@@ -7,21 +7,21 @@ import com.selimatasoy.kotlinspringrestapi.features.authentication.service.Authe
 import org.springframework.web.bind.annotation.*
 
 @RestController
-class AuthenticationController constructor(private val authenticationService: AuthenticationService) {
+class AuthenticationController(val authenticationService: AuthenticationService) {
 
-    @PostMapping("/createUser/")
+    @PostMapping("/api/v1/createUser")
     fun createUser(@RequestBody body: UserInfoDto) {
         authenticationService.createUser(body)
         return
     }
 
-    @PostMapping("/login/")
+    @PostMapping("/api/v1/login")
     fun login(@RequestBody body: LoginRequestDto): LoginResponseDto {
         return authenticationService.login(body)
     }
 
-    @GetMapping("/userInfo/")
-    fun getUserInfo(@RequestParam email:String):UserInfoDto {
+    @GetMapping("/api/v1/userInfo")
+    fun getUserInfo(@RequestParam email: String): UserInfoDto {
         return authenticationService.getUserInfo(email)
     }
 
