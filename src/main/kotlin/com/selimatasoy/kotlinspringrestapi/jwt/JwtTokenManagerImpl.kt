@@ -43,4 +43,8 @@ class JwtTokenManagerImpl : JwtTokenManager {
     override fun getUserFromToken(token: String): String? {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).body.subject
     }
+
+    override fun getUserFromTokenWithBearer(token: String): String? {
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token.substring(7)).body.subject
+    }
 }

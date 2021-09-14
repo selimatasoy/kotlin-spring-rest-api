@@ -3,7 +3,7 @@ A Modern Kotlin-Spring RESTful API example. Connects to a PostgreSQL database an
 
 - Spring Framework
 - Kotlin
-- (WIP) Authorization -> JWT
+- Authorization -> JWT
 - Database -> PostgreSQL
 - ORM SQL Framework -> Exposed
 - Ktor Client -> For External API calls

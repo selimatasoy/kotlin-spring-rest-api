@@ -30,7 +30,7 @@ class AuthenticationController(val authenticationService: AuthenticationService)
     @GetMapping("/api/v1/userInfo")
     fun getUserInfo(@RequestHeader("Authorization") authorizationToken: String?): UserInfoDto {
         if (authorizationToken != null) {
-            return authenticationService.getUserInfo(jwtTokenManager!!.getUserFromToken(authorizationToken!!.substring(7)))
+            return authenticationService.getUserInfo(jwtTokenManager.getUserFromTokenWithBearer(authorizationToken))
         } else {
             throw HttpClientErrorException(HttpStatus.FORBIDDEN)
         }
