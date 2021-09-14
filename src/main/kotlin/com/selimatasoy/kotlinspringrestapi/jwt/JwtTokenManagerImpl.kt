@@ -37,7 +37,7 @@ class JwtTokenManagerImpl : JwtTokenManager {
 
     override fun isExpired(token: String): Boolean {
         return Jwts.parser().setSigningKey(secret)
-            .parseClaimsJws(token).body.expiration.after(Date(System.currentTimeMillis()))
+            .parseClaimsJws(token).body.expiration.before(Date(System.currentTimeMillis()))
     }
 
     override fun getUserFromToken(token: String): String? {

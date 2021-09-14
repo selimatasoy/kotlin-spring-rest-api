@@ -33,10 +33,10 @@ class JwtTokenFilter(val tokenManager: JwtTokenManager) : OncePerRequestFilter()
         }
         if (userName != null && token != null && SecurityContextHolder.getContext().authentication == null) {
             if (tokenManager.tokenValidate(token)) {
-                var upassToken =
+                val usernamePasswordAuthenticationToken =
                     UsernamePasswordAuthenticationToken(userName, null, ArrayList())
-                upassToken.details = WebAuthenticationDetailsSource().buildDetails(request)
-                SecurityContextHolder.getContext().authentication = upassToken
+                usernamePasswordAuthenticationToken.details = WebAuthenticationDetailsSource().buildDetails(request)
+                SecurityContextHolder.getContext().authentication = usernamePasswordAuthenticationToken
             }
         }
 
