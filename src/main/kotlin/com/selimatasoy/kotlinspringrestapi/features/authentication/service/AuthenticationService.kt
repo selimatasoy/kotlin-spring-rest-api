@@ -7,6 +7,6 @@ import org.springframework.security.core.userdetails.UserDetailsService
 
 interface AuthenticationService : UserDetailsService {
     fun login(request: LoginRequestDto): LoginResponseDto
-    fun getUserInfo(email: String): UserInfoDto
+    fun getUserInfo(email: String?): UserInfoDto
     fun createUser(userInfoDto: UserInfoDto)
 }

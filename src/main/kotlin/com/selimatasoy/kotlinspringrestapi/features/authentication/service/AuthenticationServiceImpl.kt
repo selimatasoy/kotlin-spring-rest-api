@@ -30,7 +30,7 @@ class AuthenticationServiceImpl :
         return LoginResponseDto(jwtTokenManager.generateToken(request.username))
     }
 
-    override fun getUserInfo(email: String): UserInfoDto {
+    override fun getUserInfo(email: String?): UserInfoDto {
         return authenticationDao.getUserInfo(email).apply { password = null }
     }
 

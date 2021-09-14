@@ -4,10 +4,17 @@ import com.selimatasoy.kotlinspringrestapi.features.authentication.model.LoginRe
 import com.selimatasoy.kotlinspringrestapi.features.authentication.model.LoginResponseDto
 import com.selimatasoy.kotlinspringrestapi.features.authentication.model.UserInfoDto
 import com.selimatasoy.kotlinspringrestapi.features.authentication.service.AuthenticationService
+import com.selimatasoy.kotlinspringrestapi.jwt.JwtTokenManager
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.client.HttpClientErrorException
 
 @RestController
 class AuthenticationController(val authenticationService: AuthenticationService) {
+
+    @Autowired
+    private lateinit var jwtTokenManager: JwtTokenManager
 
     @PostMapping("/api/v1/createUser")
     fun createUser(@RequestBody body: UserInfoDto) {
@@ -21,8 +28,12 @@ class AuthenticationController(val authenticationService: AuthenticationService)
     }
 
     @GetMapping("/api/v1/userInfo")
-    fun getUserInfo(@RequestParam email: String): UserInfoDto {
-        return authenticationService.getUserInfo(email)
+    fun getUserInfo(@RequestHeader("Authorization") authorizationToken: String?): UserInfoDto {
+        if (authorizationToken != null) {
+            return authenticationService.getUserInfo(jwtTokenManager!!.getUserFromToken(authorizationToken!!.substring(7)))
+        } else {
+            throw HttpClientErrorException(HttpStatus.FORBIDDEN)
+        }
     }
 
 }

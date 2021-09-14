@@ -5,6 +5,6 @@ import org.springframework.security.core.userdetails.UserDetails
 
 interface AuthenticationDao {
     fun login(username: String): UserDetails
-    fun getUserInfo(email: String): UserInfoDto
+    fun getUserInfo(email: String?): UserInfoDto
     fun createUser(userInfoDto: UserInfoDto)
 }

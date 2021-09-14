@@ -27,12 +27,12 @@ class AuthenticationDaoImpl() : AuthenticationDao {
         return org.springframework.security.core.userdetails.User(userInfo.email, userInfo.password, ArrayList())
     }
 
-    override fun getUserInfo(email: String): UserInfoDto {
+    override fun getUserInfo(email: String?): UserInfoDto {
         Database.connectToExampleDatabase()
 
         val userInfo = transaction {
             addLogger(StdOutSqlLogger)
-            return@transaction User.select { User.email eq email }.single().fromUserDaoToUserInfo()
+            return@transaction User.select { User.email eq email!! }.single().fromUserDaoToUserInfo()
         }
         return userInfo
     }
