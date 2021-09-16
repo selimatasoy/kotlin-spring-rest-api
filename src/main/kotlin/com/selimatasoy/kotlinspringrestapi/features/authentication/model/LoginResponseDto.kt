@@ -1,3 +1,6 @@
 package com.selimatasoy.kotlinspringrestapi.features.authentication.model
 
-data class LoginResponseDto(val token:String)
+import io.swagger.annotations.ApiModel
+
+@ApiModel
+data class LoginResponseDto(val token: String)

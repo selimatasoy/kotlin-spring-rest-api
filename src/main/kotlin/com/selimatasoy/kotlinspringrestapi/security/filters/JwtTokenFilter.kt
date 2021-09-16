@@ -1,5 +1,6 @@
-package com.selimatasoy.kotlinspringrestapi.jwt
+package com.selimatasoy.kotlinspringrestapi.security.filters
 
+import com.selimatasoy.kotlinspringrestapi.jwt.JwtTokenManager
 import org.springframework.http.HttpStatus
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder

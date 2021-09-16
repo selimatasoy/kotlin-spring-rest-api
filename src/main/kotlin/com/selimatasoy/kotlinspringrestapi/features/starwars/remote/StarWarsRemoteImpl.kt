@@ -1,6 +1,6 @@
 package com.selimatasoy.kotlinspringrestapi.features.starwars.remote
 
-import com.selimatasoy.features.starwars.model.Movie
+import com.selimatasoy.kotlinspringrestapi.features.starwars.model.Movie
 import com.selimatasoy.kotlinspringrestapi.httpclient.ExternalHttpClientImpl
 import io.ktor.client.request.*
 import org.springframework.stereotype.Component

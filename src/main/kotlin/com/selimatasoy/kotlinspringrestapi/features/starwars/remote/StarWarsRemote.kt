@@ -1,7 +1,6 @@
 package com.selimatasoy.kotlinspringrestapi.features.starwars.remote
 
-import com.selimatasoy.features.starwars.model.Movie
-import org.springframework.stereotype.Component
+import com.selimatasoy.kotlinspringrestapi.features.starwars.model.Movie
 
 interface StarWarsRemote {
     suspend fun getMovie(): Movie

@@ -52,6 +52,9 @@ dependencies {
 	implementation("org.jetbrains.exposed:exposed-jodatime:0.31.1")
 	implementation("org.springframework.boot:spring-boot-starter-jooq")
 
+	implementation("io.springfox:springfox-boot-starter:3.0.0")
+	compileOnly("io.springfox:springfox-swagger-ui:3.0.0")
+
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 }
 

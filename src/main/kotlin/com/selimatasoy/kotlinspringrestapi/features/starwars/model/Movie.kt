@@ -1,5 +1,8 @@
-package com.selimatasoy.features.starwars.model
+package com.selimatasoy.kotlinspringrestapi.features.starwars.model
 
+import io.swagger.annotations.ApiModel
+
+@ApiModel
 data class Movie(
     val title: String,
     val episode_id: Int,

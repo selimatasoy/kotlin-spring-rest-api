@@ -1,6 +1,6 @@
 package com.selimatasoy.kotlinspringrestapi.features.starwars.service
 
-import com.selimatasoy.features.starwars.model.Movie
+import com.selimatasoy.kotlinspringrestapi.features.starwars.model.Movie
 import com.selimatasoy.kotlinspringrestapi.features.starwars.remote.StarWarsRemote
 import org.springframework.stereotype.Service
 
