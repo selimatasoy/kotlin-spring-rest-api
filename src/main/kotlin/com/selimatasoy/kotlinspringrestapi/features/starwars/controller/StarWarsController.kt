@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 @Api(value = "StarWars Controller")
 class StarWarsController(private val starWarsService: StarWarsService) {
 
-    @GetMapping("/api/v1/movie")
+    @GetMapping("/api/v1/star-wars/movie")
     @ApiOperation(value = "returns an info of a star wars movie from an external api")
     suspend fun getMovie(): Movie? {
         return starWarsService.getMovie()

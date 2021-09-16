@@ -19,20 +19,20 @@ class AuthenticationController(val authenticationService: AuthenticationService)
     @Autowired
     private lateinit var jwtTokenManager: JwtTokenManager
 
-    @PostMapping("/api/v1/createUser")
+    @PostMapping("/public-api/v1/authentication/createUser")
     @ApiOperation(value = "Creates a User")
     fun createUser(@RequestBody body: UserInfoDto) {
         authenticationService.createUser(body)
         return
     }
 
-    @PostMapping("/api/v1/login")
+    @PostMapping("/public-api/v1/authentication/login")
     @ApiOperation(value = "Login service")
     fun login(@RequestBody body: LoginRequestDto): LoginResponseDto {
         return authenticationService.login(body)
     }
 
-    @GetMapping("/api/v1/userInfo")
+    @GetMapping("/api/v1/authentication/userInfo")
     @ApiOperation(value = "Gets userInfo ")
     fun getUserInfo(@RequestHeader("Authorization") authorizationToken: String?): UserInfoDto {
         if (authorizationToken != null) {

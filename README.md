@@ -37,18 +37,19 @@ You can access it via http://localhost:{$PORT(8080 default)}/swagger-ui/
 
 ## - Health Check
 
-GET /api/v1/healthCheck</br>
+GET /public-api/v1/healthCheck</br>
 &nbsp; Just returns a simple object</br>
 
 ## - Authentication
 
-POST /api/v1/createUser</br>
+POST /public-api/v1/authentication/createUser</br>
 &nbsp; Registers a user to the db</br>
-POST /api/v1/login</br>
+POST /public-api/v1/authentication/login</br>
 &nbsp; Returns a jwt token if success</br>
-GET /api/v1/userInfo (Needs Authroization token from login as Authorization header)</br>
-&nbsp; Return user information</br>
+GET /api/v1/authentication/userInfo (Needs Authorization token from login as Authorization header : "Bearer
+{$token}")</br>
+&nbsp; Returns the user information</br>
 ## - Star Wars
 
-GET /api/v1/movie (Needs Authroization token from login as Authorization header)</br>
+GET /api/v1/star-wars/movie (Needs Authorization token from login as Authorization header : "Bearer {$token}")</br>
 &nbsp; An External API call example. Returns a movie information from an external api

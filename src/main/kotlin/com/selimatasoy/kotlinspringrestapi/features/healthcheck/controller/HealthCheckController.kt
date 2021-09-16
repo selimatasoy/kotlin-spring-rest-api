@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 @Api(value = "HealthCheck Controller")
 class HealthCheckController(val healthCheckService: HealthCheckService) {
 
-    @GetMapping("/api/v1/healthCheck")
+    @GetMapping("/public-api/v1/healthCheck")
     @ApiOperation(value = "returns a simple string for the sake of the example")
     fun getHealthCheck(): String? {
         return healthCheckService.getHealthCheckStatus()

@@ -42,9 +42,11 @@ class WebSecurityConfigAdapter : WebSecurityConfigurerAdapter() {
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
         http.csrf().disable()
-            .authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/login").permitAll()
+            .authorizeRequests().antMatchers(HttpMethod.GET, "/public-api/v1/healthCheck").permitAll()
             .and()
-            .authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/createUser").permitAll()
+            .authorizeRequests().antMatchers(HttpMethod.POST, "/public-api/v1/authentication/login").permitAll()
+            .and()
+            .authorizeRequests().antMatchers(HttpMethod.POST, "/public-api/v1/authentication/createUser").permitAll()
             .anyRequest().authenticated()
             .and()
             .sessionManagement()
