@@ -22,34 +22,34 @@ resources/application.conf
 
 ```
 spring.datasource.driverClassName=org.postgresql.Driver
-spring.datasource.url=jdbc:postgresql://localhost:5432/{$your_db_name}
-spring.datasource.username={$your_username}
-spring.datasource.password={$your_password}
+spring.datasource.url=jdbc:postgresql://localhost:5432/$YOUR_DB_NAME"
+spring.datasource.username="$YOUR_USERNAME"
+spring.datasource.password="$YOUR_PASSWORD"
 ```
 
 # API Doc
 
 ## - Swagger
 
-You can access it via http://localhost:{$PORT(8080 default)}/swagger-ui/
+You can access it via http://localhost:$PORT(8080 default)/swagger-ui/
 
 # Features
 
 ## - Health Check
 
-GET /public-api/v1/healthCheck</br>
-&nbsp; Just returns a simple object</br>
+**GET /public-api/v1/healthCheck**</br>
+&nbsp; Just returns a simple string</br>
 
 ## - Authentication
 
-POST /public-api/v1/authentication/createUser</br>
+**POST /public-api/v1/authentication/createUser**</br>
 &nbsp; Registers a user to the db</br>
-POST /public-api/v1/authentication/login</br>
+**POST /public-api/v1/authentication/login**</br>
 &nbsp; Returns a jwt token if success</br>
-GET /api/v1/authentication/userInfo (Needs Authorization token from login as Authorization header : "Bearer
+**GET /api/v1/authentication/userInfo** (Needs Authorization token from login as Authorization header : "Bearer
 {$token}")</br>
 &nbsp; Returns the user information</br>
 ## - Star Wars
 
-GET /api/v1/star-wars/movie (Needs Authorization token from login as Authorization header : "Bearer {$token}")</br>
+**GET /api/v1/star-wars/movie** (Needs Authorization token from login as Authorization header : "Bearer {$token}")</br>
 &nbsp; An External API call example. Returns a movie information from an external api
